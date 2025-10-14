@@ -1,0 +1,6 @@
+# ruff.toml
+line-length = 120
+select = ["B", "N", "E", "ISC", "W", "F", "RET", "SIM", "PL", "C"]
+
+[tool.ruff.format]
+quote-style = "single"
