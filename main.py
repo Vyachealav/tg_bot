@@ -1,6 +1,6 @@
 def main():
-    print("Hello from tg-bot!")
+    print('Hello from tg-bot!')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
