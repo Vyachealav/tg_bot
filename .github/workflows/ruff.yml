@@ -1,4 +1,4 @@
-name: Ruff Code Quality
+name: Ruff
 
 on:
   push:
@@ -7,17 +7,16 @@ on:
     branches: [ "main" ]
 
 jobs:
-  check_ruff:
+  ruff:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Install uv
-      run: |
-        curl -LsSf https://astral.sh/uv/install.sh | sh
-        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
-    - name: Install dependencies
-      run: uv sync --group dev
-    - name: Check formatting
-      run: ruff format --check --diff .
-    - name: Check code quality
-      run: ruff check .
+      - uses: actions/checkout@v4
+      
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      
+      - name: Run Ruff
+        run: |
+          uv sync --group dev --frozen
+          uv run ruff format --check .
+          uv run ruff check .
