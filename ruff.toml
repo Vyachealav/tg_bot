@@ -5,3 +5,11 @@ select = ["B", "N", "E", "ISC", "W", "F", "RET", "SIM", "PL", "C"]
 
 [format]
 quote-style = "single"
+
+# Исключаем тесты и другие папки из анализа
+exclude = [
+    "tests",
+    "venv",
+    "migrations",
+    "__pycache__",
+]
