@@ -1,4 +1,3 @@
-
 class NeuralGenerator:
     def __init__(self) -> None:
         pass

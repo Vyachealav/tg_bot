@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from core.user_dto import HistoryDTO, NewsDTO
 
+
 class NeuralClientBase(ABC):
     @abstractmethod
     async def get_rephrase_history(self, history_dto: HistoryDTO) -> str:
