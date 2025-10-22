@@ -1,0 +1,53 @@
+x-env:
+  &default-env
+  env_file: env/.env
+
+services:
+  pg:
+    <<: *default-env
+    image: postgres:18.0-bookworm
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    restart: always
+    expose:
+      - 5432
+    networks:
+      - db-access
+
+  api:
+    <<: *default-env
+    build:
+      context: .
+      dockerfile: dockers/api.dockerfile
+    volumes:
+      - ./src/server/:/app/src/server/
+    ports:
+      - 8000:8000
+    depends_on:
+      - pg
+    networks:
+      - db-access
+      - ollama-access
+  
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+      - ollama_models:/root/.ollama/models
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_PORT=11434
+    networks:
+      - ollama-access
+    
+
+volumes:
+  postgres_data:
+  ollama_data:
+  ollama_models:
+
+networks:
+  db-access:
+  ollama-access:
