@@ -1,11 +1,13 @@
 from dataclasses import dataclass
 
 
-@dataclass
+@dataclass(frozen=True, slots=True)
 class HistoryDTO:
-    pass
+    prompt_instruction: str
+    last_count_messages: int
+    history: dict
 
 
-@dataclass
+@dataclass(frozen=True, slots=True)
 class NewsDTO:
     pass
