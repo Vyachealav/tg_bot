@@ -24,5 +24,5 @@ class NeuralGenerator:
         )
 
     async def generate_news(self, news_dto: NewsDTO) -> str:
-        """Отправляем size и prompt, получаем рандомную историю о ЯПС"""
+        """Отправляем size и prompt, и получаем рандомную историю о ЯПС"""
         pass
