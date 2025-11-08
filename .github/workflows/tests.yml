@@ -1,4 +1,4 @@
-name: Ruff
+name: Tests
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  ruff:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,8 +15,9 @@ jobs:
       - name: Install uv
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
       
-      - name: Run Ruff
-        run: |
-          uv sync --group dev --frozen
-          uv run ruff format --check .
-          uv run ruff check .
+      - name: Install dependencies
+        run: uv sync --group dev --frozen
+      
+      - name: Run tests
+        run: uv run pytest tests/ -v
+
