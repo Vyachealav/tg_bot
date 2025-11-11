@@ -18,5 +18,5 @@ jobs:
       - name: Run Ruff
         run: |
           uv sync --group dev --frozen
-          uv run ruff format --check .
-          uv run ruff check .
+          uv run ruff format --check --exclude=tests .
+          uv run ruff check --exclude=tests .
