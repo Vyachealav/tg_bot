@@ -1,5 +1,5 @@
 # Переменные
-DEEPSEEK_MODEL ?= deepseek-r1:8b
+DEEPSEEK_MODEL ?= deepseek-r1:1.5b
 
 help: ## Показать справку
 	@echo "Доступные команды:"
@@ -16,9 +16,9 @@ down: ## Остановить сервисы
 
 
 # Очистка
-clean: ## Очистить неиспользуемые ресурсы
-	docker-compose down -v
-	docker system prune -f
+clean: ## Очистить неиспользуемые ресурсы, но сохранить Ollama модели
+	docker-compose down           # останавливает и удаляет контейнеры и сети
+	docker system prune -f        # удаляет неиспользуемые образы, сети, кэш сборки
 
 clean-all: ## Полная очистка (включая volumes)
 	docker-compose down -v --remove-orphans
@@ -31,5 +31,11 @@ deepseek: ## Загрузить DeepSeek модель
 
 ollama-run: ## Запустить модель DeepSeek
 	docker-compose exec ollama ollama run $(DEEPSEEK_MODEL)
+
+ollama-up: ## Запустить только Ollama
+	docker-compose up -d ollama
+
+ollama-down: ## Остановить только Ollama
+	docker-compose stop ollama
 
 .PHONY: help all up down restart logs clean
