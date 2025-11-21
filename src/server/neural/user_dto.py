@@ -1,18 +1,22 @@
 from dataclasses import dataclass
 from datetime import datetime
 
+structure = dataclass(frozen=True, slots=True)
 
-@dataclass(frozen=True, slots=True)
+
+@structure
 class HistoryByTimeDTO:
     start: datetime
     end: datetime
 
 
-@dataclass(frozen=True, slots=True)
+@structure
 class HistoryBySizeDTO:
+    """Количество последних сообщений"""
+
     size: int
 
 
-@dataclass(frozen=True, slots=True)
+@structure
 class NewsBySizeDTO:
     size: str

@@ -9,6 +9,11 @@ class MessageDBBase(ABC):
         pass
 
     @abstractmethod
+    async def save_messages(self, messages: list[str]) -> None:
+        "Сохраняем пачку сообщений"
+        pass
+
+    @abstractmethod
     async def get_history_by_time(self, datetime: tuple[datetime, datetime]) -> list[str]:
         """Принимаем промежуток даты по которой получаем историю сообщений"""
         pass
