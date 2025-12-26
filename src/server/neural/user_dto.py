@@ -1,22 +1,11 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 from datetime import datetime
 
-structure = dataclass(frozen=True, slots=True)
-
-
-@structure
-class HistoryByTimeDTO:
+class HistoryByTimeDTO(BaseModel):
     start: datetime
     end: datetime
 
 
-@structure
-class HistoryBySizeDTO:
+class HistoryBySizeDTO(BaseModel):
     """Количество последних сообщений"""
-
     size: int
-
-
-@structure
-class NewsBySizeDTO:
-    size: str
