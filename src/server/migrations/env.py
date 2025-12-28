@@ -5,10 +5,10 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from server.db.config import settings
+from src.server.db.config import settings
 
-from server.db.models import ChatMessage  # noqa
-from server.db.database import Base
+from src.server.db.models import ChatMessage  # noqa
+from src.server.db.database import Base
 
 config = context.config
 

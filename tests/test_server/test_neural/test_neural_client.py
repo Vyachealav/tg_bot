@@ -1,5 +1,5 @@
 import pytest
-from src.server.neural.user_dto import HistoryByTimeDTO, HistoryBySizeDTO
+from src.server.api.dto.request import HistoryByTimeDTO, HistoryBySizeDTO
 
 
 @pytest.mark.asyncio

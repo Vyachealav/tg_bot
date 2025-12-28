@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+
 class Settings(BaseSettings):
     POSTGRES_HOST: str
     POSTGRES_PORT: int
@@ -14,5 +15,5 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_file='env/.env', extra='ignore')
 
-settings = Settings()
 
+settings = Settings()
