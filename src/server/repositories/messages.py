@@ -1,5 +1,5 @@
 from src.server.db.models import ChatMessage
-from src.server.utils.repository import SQLAlchemyRepository
+from server.utils.base import SQLAlchemyRepository
 
 
 class MessagesRepository(SQLAlchemyRepository):

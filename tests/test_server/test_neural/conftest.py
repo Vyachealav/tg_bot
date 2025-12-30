@@ -15,17 +15,17 @@ class MockMessageDB:
         self.save_messages = AsyncMock()
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True, scope='function')
 def mock_db():
     return MockMessageDB()
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True, scope='function')
 def config():
     return NeuralConfig(model='deepseek-r1:1.5b', prompt_instruction='Rehprase')
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True, scope='function')
 def mock_ollama_client(monkeypatch):
     mock = AsyncMock()
     mock.generate = AsyncMock(return_value={'response': 'mocked-answer'})
@@ -34,6 +34,6 @@ def mock_ollama_client(monkeypatch):
     return mock
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True, scope='function')
 def neural_client(mock_db, config, mock_ollama_client):
     return NeuralClient(db=mock_db, config=config)

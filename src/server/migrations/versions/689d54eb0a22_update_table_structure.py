@@ -1,8 +1,8 @@
-"""create chat_messages
+"""update table structure
 
-Revision ID: 68d2da753256
+Revision ID: 689d54eb0a22
 Revises:
-Create Date: 2025-12-28 12:43:14.319360
+Create Date: 2025-12-30 14:27:47.612736
 
 """
 
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '68d2da753256'
+revision: str = '689d54eb0a22'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -25,10 +25,11 @@ def upgrade() -> None:
     op.create_table(
         'chat_messages',
         sa.Column('id', sa.Integer(), nullable=False),
-        sa.Column('username', sa.String(), nullable=False),
-        sa.Column('message', sa.String(), nullable=False),
-        sa.Column('sent_at', sa.DateTime(), nullable=False),
+        sa.Column('username', sa.String(length=50), nullable=False),
+        sa.Column('message', sa.Text(), nullable=False),
+        sa.Column('sent_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
         sa.PrimaryKeyConstraint('id'),
+        sa.UniqueConstraint('username'),
     )
     # ### end Alembic commands ###
 

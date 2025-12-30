@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import DateTime, func
+from sqlalchemy import DateTime, func, String, Text
 import datetime
 
 from src.server.db.database import Base
@@ -10,8 +10,8 @@ class ChatMessage(Base):
     __tablename__ = 'chat_messages'
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    username: Mapped[str]
-    message: Mapped[str]
+    username: Mapped[str] = mapped_column(String(50), unique=True)
+    message: Mapped[str] = mapped_column(Text)
     sent_at: Mapped[datetime.datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )

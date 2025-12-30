@@ -9,8 +9,7 @@ class Settings(BaseSettings):
     POSTGRES_DB: str
 
     @property
-    def database_url_asyncpg(self):
-        # postgresql+asyncpg://postgres:postgres@localhost:5432/sa
+    def database_url_asyncpg(self) -> str:
         return f'postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}'
 
     model_config = SettingsConfigDict(env_file='env/.env', extra='ignore')

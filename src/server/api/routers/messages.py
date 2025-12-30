@@ -26,13 +26,5 @@ async def add_message(
     user_message: UserMessageSchemaAdd,
 ):
     user_message_dict = user_message.model_dump()
-    user_message_id = await MessagesRepository().add_one(user_message_dict)
+    user_message_id = await MessagesRepository().add_many(user_message_dict)
     return {'user_message_id': user_message_id}
-
-
-@router.get('')
-async def get_message(
-    user_message: UserMessageSchemaAdd,
-    session: async_session,
-):
-    pass
